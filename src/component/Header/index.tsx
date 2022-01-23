@@ -18,9 +18,9 @@ export default function Header() {
             </div>
           </div>
           <div className="col-span-6  flex justify-end">
-            <div>
-              <AiOutlineUser />{user.name}
-            </div>
+            
+             <span className="m-1"> <AiOutlineUser /> </span>{user.name}
+         
           </div>
         </div>
       </div>
