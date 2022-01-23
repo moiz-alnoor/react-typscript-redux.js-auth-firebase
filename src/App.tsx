@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom'
+import LogIn from './component/auth/log.in'
+import Dashboard from './component/dashboard'
+import Setting from './component/setting'
+import {ProtectedRoute} from './component/auth/protected.route'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+   <Switch>
+        <ProtectedRoute   exact  path="/login" component={LogIn} />
+        <ProtectedRoute   exact path="/dashboard" component={Dashboard} />
+        <ProtectedRoute  exact  path="/setting" component={Setting} />
+        <Route  exact  path="/" component={LogIn} />
+        <Route  exact  path="*" component={LogIn} />
+  </Switch>
+    </>
   );
 }
-
-export default App;
+export default App
