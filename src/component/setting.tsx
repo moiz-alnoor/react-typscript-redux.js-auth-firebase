@@ -98,20 +98,20 @@ export default function Setting() {
                     </p>
                     <p className="mt-2 text-gray-600">
                       linkedin:
-                      <a href={githubPofile.blog} target="_blank">
+                      <a href={githubPofile.blog} rel="noreferrer" target="_blank">
                         {githubPofile.blog}
                       </a>
                     </p>
 
                     <p className="mt-2 text-gray-600">
                       profile api:
-                      <a href={githubPofile.url} target="_blank">
+                      <a href={githubPofile.url} rel="noreferrer" target="_blank">
                         {githubPofile.url}
                       </a>
                     </p>
                     <p className="mt-2 text-gray-600">
                       html_url:
-                      <a href={githubPofile.html_url} target="_blank">
+                      <a href={githubPofile.html_url} rel="noreferrer" target="_blank">
                         {githubPofile.html_url}
                       </a>
                     </p>
@@ -130,7 +130,7 @@ export default function Setting() {
             {isError ? (
               <>
                 <span className="absolute">Empty</span>
-                <img src={notFound} width="130" className="rounded-full" />
+                <img src={notFound} width="130" alt=""  className="rounded-full" />
               </>
             ) : (
               false

@@ -120,7 +120,7 @@ export default function Dashboard() {
               <>
                 {" "}
                 <span className="absolute">Empty</span>{" "}
-                <img src={notFound} width="130" className="rounded-full" />
+                <img src={notFound} width="130" alt="" className="rounded-full" />
               </>
             ) : (
               false
