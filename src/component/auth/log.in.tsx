@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import GoogleButton from "react-google-button"
 import { firebase } from "../../firebase/firebase"
-import AuthLogo from "./../auth/auth_logo.png"
+import AuthLogo from "../../file/auth_logo.png"
 import jwt_decode from "jwt-decode"
 import { login } from "../../features/user"
 import { useDispatch } from "react-redux";

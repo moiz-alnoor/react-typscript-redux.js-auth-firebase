@@ -1,43 +1,73 @@
-import Header from './Header'
-import MenuBar from "./menu_bar"
-import Footer from './footer'
-import { SpinnerRoundOutlined,SpinnerDotted } from 'spinners-react';
-import useFetch from "../hook/get.data"
-import { useState } from 'react'
+import Header from "./Header";
+import MenuBar from "./menu_bar";
+import Footer from "./footer";
+import {  SpinnerDotted } from "spinners-react";
+import { useEffect, useState } from "react";
+import axois from "axios";
+import notFound from "./../file/not_found.png"
+import {url} from "../helper/url"
 
-
-interface Data { id: number}
+interface Data {
+  id: number;
+}
 export default function Dashboard() {
+  
+  const [data, setData] = useState<[]>([]);
   const [isLoading, setIsloading] = useState<boolean>(true)
-  const data:any []= useFetch("https://jsonplaceholder.typicode.com/todos/10")
-  console.log(data)
-  if(data.length > 0){
-    setIsloading(false)
-  }
+  const [isError, setIsError] = useState<boolean>(false)
 
+  useEffect(() => {
+    axois
+      .get(url)
+      .then((res) => {
+        const todos = res.data
+        setData(todos)
+        setIsloading(false)
+        setIsError(false)
+        console.log(data)
+      })
+      .catch((error) => { 
+         setData([])
+         setIsError(true)
+         setIsloading(false)
+        })
+  }, []);
 
   return (
     <>
       <Header />
       <div className="bg-yellow-200 h-screen">
         <div className="grid grid-cols-12">
-
           <div className="col-span-2 ">
             <MenuBar />
           </div>
 
-          <div className="col-span-8  grid place-items-center">
-          {isLoading? 
-          
-          <SpinnerDotted size={150} thickness={100} speed={100} color="#E8A317" />  : false} 
+          <div className="col-span-8  grid place-items-center ml-48">
+            {isLoading ? (
+              <SpinnerDotted
+                size={150}
+                thickness={100}
+                speed={100}
+                color="#E8A317"
+              />
+            ) : data.length > 0 ?(
+              <>
+                {" "}
+                {data && data?.map((d: any) => (
+                    <ul>
+                      <li>{d.id}</li>
+                    </ul>
+                  ))}{" "}
+              </>
+            ): false}
 
 
-     
+            {isError? <>  <span className="absolute">Empty</span> <img src={notFound} width="130"  className="rounded-full"/></> :false}
+          </div>
+        
         </div>
-        { data && data.map((data:Data) => <ul><li>{data.id}</li></ul>) }
       </div>
-      </div>
-<Footer/>
+      <Footer />
     </>
   );
 }

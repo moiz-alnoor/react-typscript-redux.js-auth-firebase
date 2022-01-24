@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const useFetch = (url:string) => {
+const useFetch = (url:any) => {
+
   const [data, setData] = useState()
 
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.log(err))
-  }, [url]);
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        return res.data;
+      
+      })
 
-  return [data];
-};
+    }
 
 export default useFetch;

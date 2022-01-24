@@ -1,4 +1,4 @@
-import playtomic_ from "./playtomic_.png"
+import playtomic_ from "../../file/playtomic_.png"
 import { AiOutlineUser } from "react-icons/ai"
 import { useSelector } from "react-redux"
 
