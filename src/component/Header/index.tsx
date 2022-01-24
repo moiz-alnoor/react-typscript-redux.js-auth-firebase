@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 
 
 export default function Header() {
-  // get the user name from the store 
+  // get the user name from the redux store 
   const user = useSelector((state:any) => state.user.value);
   
   return (
