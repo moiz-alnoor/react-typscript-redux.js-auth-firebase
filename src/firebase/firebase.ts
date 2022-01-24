@@ -3,7 +3,7 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 
 // connect with firebase for auth
-const firebaseConfig = {
+const firebaseConfig:object = {
   apiKey: "AIzaSyAWJPh4DAKBF10I4DcDD8Yk844nbh6dXEw",
   authDomain: "playtomic-d9d86.firebaseapp.com",
   projectId: "playtomic-d9d86",

@@ -42,7 +42,7 @@ export default function LogIn (){
   return (
     <> 
     <div className="flex justify-center mt-24">
-            <img src={AuthLogo} width="500" height="500" />
+            <img src={AuthLogo} width="500" alt="log logo"   height="500" />
     </div>
     <div className="flex justify-center">
             <GoogleButton onClick={googleSignIn} />
