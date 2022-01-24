@@ -1,10 +1,10 @@
-import playtomic_ from "./playtomic_.png"
+import playtomic_ from "../../file/playtomic_.png"
 import { AiOutlineUser } from "react-icons/ai"
 import { useSelector } from "react-redux"
 
 
 export default function Header() {
-  // get the user name from the store 
+  // get the user name from the redux store 
   const user = useSelector((state:any) => state.user.value);
   
   return (
@@ -18,9 +18,9 @@ export default function Header() {
             </div>
           </div>
           <div className="col-span-6  flex justify-end">
-            <div>
-              <AiOutlineUser />{user.name}
-            </div>
+            
+             <span className="m-1 text-sm font-medium tracking-wider"> <AiOutlineUser /> </span>{user.name}
+         
           </div>
         </div>
       </div>

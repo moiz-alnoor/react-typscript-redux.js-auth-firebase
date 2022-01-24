@@ -1,5 +1,4 @@
 import {Route, Redirect } from "react-router-dom"
-import { useAppSelector } from '../../hook/app'
 const isLog = localStorage.getItem('isLog')
 
 // get isLog variable as boolain 

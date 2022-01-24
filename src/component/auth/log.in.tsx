@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import GoogleButton from "react-google-button"
 import { firebase } from "../../firebase/firebase"
-import AuthLogo from "./../auth/auth_logo.png"
+import AuthLogo from "../../file/auth_logo.png"
 import jwt_decode from "jwt-decode"
 import { login } from "../../features/user"
 import { useDispatch } from "react-redux";
@@ -23,18 +23,20 @@ export default function LogIn (){
       .signInWithPopup(googleProider)
       .then((result) => {
         const accessToken :( [] | any) = result.user?.multiFactor
+
+        // decode the token to get user data, in human redable  format
         const decodeAccessToken: userName = jwt_decode(accessToken.user.accessToken)
 
         // get the name from the token
         const name = decodeAccessToken.name
 
-        // put user data into store
+        // put user data into redux store
         dispatch(login({ name: name, isLog:true }))
 
         // redirct to the the dashboard page
         window.location.replace("/dashboard")
                 
-      }).catch((error) => console.log(error))
+      }).catch((error) => error)
      
     }
 
