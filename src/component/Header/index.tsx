@@ -13,7 +13,7 @@ export default function Header() {
         <div className="grid grid-cols-12">
           <div className="col-span-6">
             <div className="flex items-center">
-              <img src={playtomic_} width="30" height="30" />
+              <img src={playtomic_} width="30" height="30" alt="PLAYTOMIC" />
               <p>PLAYTOMIC</p>
             </div>
           </div>
