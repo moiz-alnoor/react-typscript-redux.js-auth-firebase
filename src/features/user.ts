@@ -9,7 +9,7 @@ interface UserState {
  // initial the store 
 const initialStateUser:UserState = { name: "", isLog:false}
  // in case the store has lost the data 
-if(initialStateUser.name === "" || initialStateUser .isLog  === false){
+if(initialStateUser.name === "" || initialStateUser.isLog  === false){
      initialStateUser.isLog = localStorage.getItem('isLog')
      initialStateUser.name  = localStorage.getItem('userName')
 }
