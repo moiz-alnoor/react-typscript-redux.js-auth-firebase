@@ -3,7 +3,7 @@ import Login from "./log.in"
 
 const isLog = localStorage.getItem('isLog')
 
-// get isLog value as boolain 
+// get isLog value as boolean 
 const getIsLog = (isLog:any) => {
   return typeof isLog == 'string' ? JSON.parse(isLog) : isLog
 }
