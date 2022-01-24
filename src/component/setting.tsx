@@ -1,32 +1,53 @@
-import Header from "./Header";
-import MenuBar from "./menu_bar";
-import { useEffect, useState } from "react";
-import Footer from "./footer";
+import Header from "./Header"
+import  MenuBar from "./menu_bar"
+import { useEffect, useState } from "react"
+import Footer from "./footer"
 import axois from "axios";
-import notFound from "./../file/not_found.png";
-import { gitHub } from "../helper/url";
-import { SpinnerDotted } from "spinners-react";
+import notFound from "./../file/not_found.png"
+import { gitHub } from "../helper/url"
+import {AiFillSetting} from "react-icons/ai"
+import { SpinnerRoundOutlined } from "spinners-react"
+
+export interface profileData {
+    login: string
+    id: number
+    node_id: string
+    avatar_url: string
+    gravatar_id: string
+    url: string
+    html_url: string
+    followers_url: string
+    following_url: string
+    gists_url: string
+    starred_url: string
+    subscriptions_url: string
+    organizations_url: string
+    repos_url: string
+    events_url: string
+    received_events_url: string
+    type: string
+    site_admin: boolean
+}
 
 export default function Setting() {
 
-  const [githubPofile, setGithubPofile] = useState<any>();
-  const [isLoading, setIsloading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [githubPofile, setGithubPofile] = useState<any>({})
+  const [isLoading, setIsloading] = useState<boolean>(true)
+  const [isError, setIsError] = useState<boolean>(false)
 
   useEffect(() => {
     axois
       .get(gitHub)
       .then((res) => {
-        const moizData: object = res.data;
-        setGithubPofile(moizData);
-        setIsloading(false);
-        setIsError(false);
-        console.log(moizData);
+        const profileData: profileData = res.data
+        setGithubPofile(profileData)
+        setIsloading(false)
+        setIsError(false)
       })
       .catch((error) => {
-        setGithubPofile({});
-        setIsError(true);
-        setIsloading(false);
+        setGithubPofile({})
+        setIsError(true)
+        setIsloading(false)
       });
   }, []);
 
@@ -39,16 +60,21 @@ export default function Setting() {
             <MenuBar />
           </div>
 
-          <div className="col-span-8  grid place-items-center ml-48">
+          <div className="col-span-8  ">
+          <div className="py-7 px-7 text-xs font-medium tracking-wider text-left flex items-center">
+              <AiFillSetting size={25} /> Setting
+            </div>
             {isLoading ? (
-              <SpinnerDotted
+                 <div className="col-span-8  flex justify-center mt-60 ml-48">
+              <SpinnerRoundOutlined
                 size={150}
                 thickness={100}
                 speed={100}
                 color="#E8A317"
               />
+              </div>
             ) : Object.keys(githubPofile).length > 0 ? (
-              <>
+              <div className="grid place-items-center ml-48">
                 <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  hover:cursor-pointer">
                   <div className="flex justify-center md:justify-end -mt-16">
                     <img
@@ -96,14 +122,14 @@ export default function Setting() {
                     </a>
                   </div>
                 </div>
-              </>
+              </div>
             ) : (
               false
             )}
 
             {isError ? (
               <>
-                <span className="absolute">Empty</span>{" "}
+                <span className="absolute">Empty</span>
                 <img src={notFound} width="130" className="rounded-full" />
               </>
             ) : (
@@ -114,5 +140,5 @@ export default function Setting() {
         <Footer />
       </div>
     </>
-  );
+  )
 }
