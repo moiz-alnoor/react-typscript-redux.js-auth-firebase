@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom"
-import {Route, Outlet } from "react-router-dom"
+import {Outlet } from "react-router-dom"
 import Login from "./log.in"
+
 const isLog = localStorage.getItem('isLog')
 
-// get isLog variable as boolain 
+// get isLog value as boolain 
 const getIsLog = (isLog:any) => {
   return typeof isLog == 'string' ? JSON.parse(isLog) : isLog
 }
 
-//check if the user is auth
- export const ProtectedRoute = () => isLog? <Outlet/> : <Login/>
+//check if the user is authenticated
+ export const ProtectedRoute = () => getIsLog(isLog)? <Outlet/> : <Login/>
  export default  ProtectedRoute 
 
 
