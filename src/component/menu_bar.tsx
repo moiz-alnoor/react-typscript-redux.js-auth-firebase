@@ -1,13 +1,14 @@
 import { AiFillSetting, AiOutlineDashboard, AiOutlineLogout } from "react-icons/ai"
 import { Link } from "react-router-dom"
-import firebase from 'firebase/compat/app'
+import { logout } from "../features/user"
+import { useDispatch } from "react-redux"
 
 export default function MenuBar() {
-  const sinOut = () => {
-    firebase.auth().signOut()
-    localStorage.clear()
-    window.location.href = "/"
-  }
+   const dispatch = useDispatch()
+
+   const sinOut = () => {
+    dispatch(logout())
+  } 
   return (
     <>
       <div className="border-r-2 border-white p-5 h-screen  flex justify-center">

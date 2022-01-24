@@ -1,21 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
-
+import { createSlice } from "@reduxjs/toolkit"
+import { firebase } from "../firebase/firebase"
 
 interface UserState {
     name:  (string  | any),
     isLog: (boolean | any)
-  }
- 
+}
+
+ // initial the store 
 const initialStateUser:UserState = { name: "", isLog:false}
-
-
-
+ // in case the store has lost the data 
 if(initialStateUser.name === "" || initialStateUser .isLog  === false){
-
      initialStateUser.isLog = localStorage.getItem('isLog')
      initialStateUser.name  = localStorage.getItem('userName')
-
-  }
+}
 
 export const userSlice = createSlice({
   name: "user",
@@ -23,18 +20,22 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.value = action.payload
+       // put  the store  data  in localStorage as backup
       localStorage.setItem('isLog', state.value.isLog)
       localStorage.setItem('userName', state.value.name)
     },
 
     logout: (state) => {
-      state.value = initialStateUser;
+      state.value = initialStateUser
+      firebase.auth().signOut()
+      localStorage.clear()
+      window.location.href = "/"
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout } = userSlice.actions
 
-export default userSlice.reducer;
+export default userSlice.reducer
 
 
