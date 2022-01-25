@@ -23,8 +23,7 @@ export const userSlice = createSlice({
        // put  the store  data  in localStorage as backup
       localStorage.setItem('isLog', state.value.isLog)
       localStorage.setItem('userName', state.value.name)
-      // redirct to the the dashboard page
-      window.location.href = "/dashboard"
+    
     },
 
     logout: (state) => {
@@ -32,8 +31,7 @@ export const userSlice = createSlice({
       // signOut form firebase too
       firebase.auth().signOut()
       localStorage.clear()
-      // redirct out
-      window.location.href = "/"
+   
     },
   },
 });

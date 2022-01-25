@@ -4,7 +4,6 @@ import AuthLogo from "../../file/auth_logo.png"
 import jwt_decode from "jwt-decode"
 import { login } from "../../features/user"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
 
 interface userName {
   name: string;
@@ -15,7 +14,6 @@ interface userName {
 export default function LogIn (){
   
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const googleSignIn = () => {
     const googleProider = new firebase.auth.GoogleAuthProvider();
@@ -35,8 +33,8 @@ export default function LogIn (){
         dispatch(login({ name: name, isLog:true }))
 
         // redirct to the the dashboard page
-        //window.location.replace("/dashboard")
-       //   navigate("/dashboard", { replace: true })
+         window.location.replace("/dashboard")
+  
                 
       }).catch((error) => error)
      

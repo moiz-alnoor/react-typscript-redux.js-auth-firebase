@@ -8,6 +8,8 @@ export default function MenuBar() {
 
    const sinOut = () => {
     dispatch(logout())
+    // redirct out
+    window.location.href = "/"
   } 
   return (
     <>
